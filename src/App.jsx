@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { CHAPTERS } from "../shared/questions.js";
+
 
 const QUESTION_TIME = 15;
 const socket = {
