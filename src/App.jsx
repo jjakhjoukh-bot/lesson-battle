@@ -86,10 +86,12 @@ function HostView() {
 
     socket.on("game:state", onState);
     socket.on("game:closed", onClosed);
-    return () => {
-      socket.off("game:state", onState);
-      socket.off("game:closed", onClosed);
-    };
+   return () => {
+  if (socket && socket.off) {
+    socket.off("game:state", onState);
+    socket.off("game:closed", onClosed);
+  }
+};
   }, []);
 
  const createGame = () => {
