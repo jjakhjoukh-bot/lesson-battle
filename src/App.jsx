@@ -111,7 +111,7 @@ function HostView() {
 
   
 
-};
+
 
   const configureGame = () => {
     if (!gameCode) return;
