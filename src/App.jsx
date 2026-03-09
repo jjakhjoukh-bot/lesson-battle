@@ -148,8 +148,16 @@ function HostView() {
   };
 
   const startGame = () => {
-    socket.emit("host:startGame", { code: gameCode });
-  };
+
+  setGameState((prev) => ({
+    ...prev,
+    phase: "question",
+    currentQuestionNumber: 1,
+    question: prev.questions[0],
+    timerEndsAt: Date.now() + 15000
+  }));
+
+};
 
   const nextQuestion = () => {
     socket.emit("host:nextQuestion", { code: gameCode });
