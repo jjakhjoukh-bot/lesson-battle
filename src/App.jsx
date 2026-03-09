@@ -5,7 +5,8 @@ import { CHAPTERS } from "../shared/questions.js";
 const QUESTION_TIME = 15;
 const socket = {
   emit: () => {},
-  on: () => {}
+  on: () => {},
+  off: () => {}
 };
 
 function useCountdown(targetTime, active) {
