@@ -193,18 +193,13 @@ function HostView() {
   />
 </label>
             <label className="space-y-2">
-              <span className="label">Hoofdstuk</span>
-              <select
-                value={chapterId}
-                onChange={(event) => setChapterId(event.target.value)}
-                className="input"
-              >
-                {Object.values(CHAPTERS).map((chapter) => (
-                  <option key={chapter.id} value={chapter.id}>
-                    {chapter.title} - {chapter.subtitle}
-                  </option>
-                ))}
-              </select>
+             <span className="label">Onderwerp</span>
+<input
+  className="input"
+  value={topic}
+  onChange={(e) => setTopic(e.target.value)}
+  placeholder="bijv. Inflatie of Productie"
+/>
             </label>
 
             <label className="space-y-2">
