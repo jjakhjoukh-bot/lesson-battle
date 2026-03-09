@@ -93,28 +93,21 @@ function HostView() {
   }, []);
 
  const createGame = () => {
-
   setError("");
 
-  const code = Math.floor(100000 + Math.random() * 900000).toString();
+  socket.emit(
+    "host:createGame",
+    { chapterId, teamMode, questionCount },
+    (response) => {
+      if (!response?.ok) {
+        setError("Spel starten mislukt.");
+        return;
+      }
 
-  const questions = [];
-
-  for (let i = 0; i < questionCount; i++) {
-
-    questions.push({
-      id: i,
-      prompt: `Vraag ${i+1} over ${topic}`,
-      options: [
-        "Antwoord A",
-        "Antwoord B",
-        "Antwoord C",
-        "Antwoord D"
-      ],
-      correctIndex: Math.floor(Math.random()*4)
-    });
-
-  }
+      setGameCode(response.code);
+    }
+  );
+};
 
   setGameCode(code);
 
