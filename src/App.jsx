@@ -64,6 +64,7 @@ function HostView() {
   const [chapterId, setChapterId] = useState("h3");
   const [teamMode, setTeamMode] = useState(false);
   const [questionCount, setQuestionCount] = useState(12);
+  const [topic, setTopic] = useState("Economie");
   const [error, setError] = useState("");
   const [winnerBurst, setWinnerBurst] = useState(false);
   const lastPhaseRef = useRef("lobby");
@@ -96,19 +97,41 @@ function HostView() {
   }, []);
 
  const createGame = () => {
+
   setError("");
 
   const code = Math.floor(100000 + Math.random() * 900000).toString();
 
+  const questions = [];
+
+  for (let i = 0; i < questionCount; i++) {
+
+    questions.push({
+      id: i,
+      prompt: `Vraag ${i+1} over ${topic}`,
+      options: [
+        "Antwoord A",
+        "Antwoord B",
+        "Antwoord C",
+        "Antwoord D"
+      ],
+      correctIndex: Math.floor(Math.random()*4)
+    });
+
+  }
+
   setGameCode(code);
+
   setGameState({
     code: code,
     phase: "lobby",
     players: [],
     leaderboard: [],
     questionCount: questionCount,
-    currentQuestionNumber: 0
+    currentQuestionNumber: 0,
+    questions: questions
   });
+
 };
 
   const configureGame = () => {
@@ -160,6 +183,15 @@ function HostView() {
         <section className="grid gap-6 xl:grid-cols-[360px,1fr]">
           <aside className="glass-panel space-y-4 p-5">
             <h2 className="text-xl font-bold">Spel instellen</h2>
+            <label className="space-y-2">
+  <span className="label">Onderwerp</span>
+  <input
+    className="input"
+    value={topic}
+    onChange={(e) => setTopic(e.target.value)}
+    placeholder="bijv. Inflatie of Productie"
+  />
+</label>
             <label className="space-y-2">
               <span className="label">Hoofdstuk</span>
               <select
