@@ -148,6 +148,8 @@ function HostView() {
   };
 
   const startGame = () => {
+  socket.emit("host:startGame", { code: gameCode });
+};
 
   setGameState((prev) => ({
     ...prev,
