@@ -1,13 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-
-
+import { io } from "socket.io-client";
 
 const QUESTION_TIME = 15;
-const socket = {
-  emit: () => {},
-  on: () => {},
-  off: () => {}
-};
+
+const socket = io();
 
 function useCountdown(targetTime, active) {
   const [remaining, setRemaining] = useState(QUESTION_TIME);
