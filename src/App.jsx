@@ -109,17 +109,7 @@ function HostView() {
   );
 };
 
-  setGameCode(code);
-
-  setGameState({
-    code: code,
-    phase: "lobby",
-    players: [],
-    leaderboard: [],
-    questionCount: questionCount,
-    currentQuestionNumber: 0,
-    questions: questions
-  });
+  
 
 };
 
