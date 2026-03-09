@@ -192,15 +192,7 @@ function HostView() {
     placeholder="bijv. Inflatie of Productie"
   />
 </label>
-            <label className="space-y-2">
-             <span className="label">Onderwerp</span>
-<input
-  className="input"
-  value={topic}
-  onChange={(e) => setTopic(e.target.value)}
-  placeholder="bijv. Inflatie of Productie"
-/>
-            </label>
+            
 
             <label className="space-y-2">
               <span className="label">Aantal vragen</span>
