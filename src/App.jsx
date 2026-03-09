@@ -94,18 +94,21 @@ function HostView() {
     };
   }, []);
 
-  const createGame = () => {
-    setError("");
-    socket.emit(
-      "host:createGame",
-      { chapterId, teamMode, questionCount },
-      (response) => {
-        if (!response?.ok) {
-          setError("Spel kon niet worden gestart.");
-        }
-      }
-    );
-  };
+ const createGame = () => {
+  setError("");
+
+  const code = Math.floor(100000 + Math.random() * 900000).toString();
+
+  setGameCode(code);
+  setGameState({
+    code: code,
+    phase: "lobby",
+    players: [],
+    leaderboard: [],
+    questionCount: questionCount,
+    currentQuestionNumber: 0
+  });
+};
 
   const configureGame = () => {
     if (!gameCode) return;
